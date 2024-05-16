@@ -1,0 +1,6 @@
+https://www.siberportal.org/red-team/exploit-development/before-exploitation-part-3-x86-assembly-language/#:~:text=PUSH%2FPOP,ger%C3%A7ekle%C5%9Ftirdi%C4%9Fi%20i%C3%A7in%20%C3%A7%C4%B1kartma%20i%C5%9Flemi%20yap%C4%B1lmaktad%C4%B1r.
+
+The Art of Assembly Language
+(Brief Contents)
+
+http://docs.neu.edu.tr/staff/jamal.fathi/mikrodenetleyici_9.pdf

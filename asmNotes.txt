@@ -1,0 +1,190 @@
+Başlamadan önce besmele çek
+
+Assembly diline başlamadan önce anlaşılması gereken bazı temel kavramlar vardır. Bu kavramlar, düşük seviyeli programlama yapmanın temellerini oluşturur ve daha etkili bir şekilde assembly yazmanıza yardımcı olur. İşte bu temel kavramların bir listesi ve açıklamaları:
+
+### 1. İşlemci Mimarisi
+Bilgisayarın merkezi işlem birimi (CPU) ve onun mimarisi, assembly programlamada kullanılacak komut setini ve kullanılabilir registerları belirler. Örneğin, x86, ARM, MIPS gibi farklı işlemci mimarileri farklı komut setlerine ve özelliklere sahiptir.
+
+### 2. Makine Dili
+Makine dili, işlemcinin doğrudan anlayabildiği ve yürütebildiği düşük seviyeli, ikili sayılarla ifade edilen dildir. Assembly kodu, aslında makine diline yakın, okunabilir bir ara katmandır ve her bir assembly komutu spesifik bir makine diline karşılık gelir.
+
+### 3. Assembler
+Assembler, yazdığınız assembly kodunu işlemcinin anlayabileceği makine diline çeviren programdır. Bu çeviri işlemine genellikle "assembly" denir.
+
+### 4. Linker
+Linker, bir veya birden fazla obje dosyasını alır ve bunları çalıştırılabilir bir dosya, kütüphane veya başka bir obje dosyası haline getirir. Bağımsız olarak derlenmiş kod parçalarını birleştirerek, fonksiyonların ve verilerin birbiriyle doğru şekilde bağlantı kurmasını sağlar.
+
+### 5. Yığın (Stack)
+Yığın, fonksiyon çağrıları, yerel değişkenler ve programın çalışma sırasında ihtiyaç duyduğu geçici veriler için kullanılan dinamik bir veri yapısıdır. Yığın, LIFO (Last In, First Out - Son Giren, İlk Çıkar) prensibine göre çalışır.
+
+### 6. Yığın Çerçevesi (Stack Frame)
+Her fonksiyon çağrısı için bir yığın çerçevesi oluşturulur. Bu çerçeve, fonksiyonun parametrelerini, yerel değişkenlerini ve dönüş adresini içerir. Yığın çerçevesi, fonksiyonun yürütülmesi sırasında ilgili verilere erişim sağlar.
+
+### 7. Bayraklar ve Durum Registerları (Flags and Status Registers)
+İşlemci, gerçekleştirdiği işlemlerin sonuçlarını değerlendirmek için durum bayrakları kullanır. Bu bayraklar, son işlemin sonucunda taşma, sıfır, işaret ve diğer durumlar hakkında bilgi verir.
+
+### 8. Kesmeler ve İstisnalar (Interrupts and Exceptions)
+Kesmeler, işlemcinin normal iş akışını keserek acil durumlarla veya belirli olaylarla ilgilenmesini sağlar. İstisnalar ise programın beklenmedik veya hatalı durumlarına işaret eder.
+
+### 9. Bellek Yönetimi
+Bellek yönetimi, programın bellekten veri okuması ve yazması işlemlerini kapsar. Bellek, genellikle doğrusal bir adres alanı olarak düzenlenir ve program, verilere bu adresler üzerinden erişir.
+
+### 10. Bellek Haritalama (Memory Mapping)
+Bellek haritalama, donanım cihazlarının bellek üzerindeki spesifik adreslere atanmasıdır. Bu sayede, programlar bu cihazlarla veri alışverişinde bulunabilir.
+
+Bu kavramların her biri, assembly programlama yaparken karşılaşacağınız ve anlamanız gereken temel ögelerdir. Bu bilgiler
+
+, assembly'nin nasıl çalıştığını, neden böyle yapılandırıldığını ve nasıl etkili bir şekilde kullanılabileceğini anlamanıza yardımcı olacaktır.
+
+Assembly dilinde ve bilgisayar mimarisinde "register", "hafıza (memory)", ve "yazmaç" kavramları merkezi öneme sahiptir. Bunlar bir bilgisayarın nasıl çalıştığını anlamak için temel bileşenlerdir. İşte bu kavramların açıklamaları:
+
+### 1. Register (Yazmaç)
+**Register** ya da Türkçe'de bazen "yazmaç" olarak da bilinir, mikroişlemcinin hızlı erişim sağlayabileceği küçük hafıza birimleridir. İşlemcinin içinde yer alırlar ve çok hızlı bir şekilde erişilebilirler. Registerlar, işlemcinin anlık olarak ihtiyaç duyduğu verileri ve işlem sonuçlarını saklar. Çeşitli tiplerde registerlar vardır:
+
+- **Genel Amaçlı Registerlar (General Purpose Registers)**: Bunlar çeşitli veri işlemleri için kullanılır (örneğin, `AX`, `BX`, `CX`, `DX` x86 mimarisinde).
+- **Segment Registerlar**: Hafızanın adreslenmesi için kullanılır (örneğin, `CS`, `DS`, `SS`).
+- **Kontrol Registerları**: İşlemci durumunu ve işlem modunu kontrol eder.
+- **Bayrak Registerları (Flag Registers)**: İşlemcinin son işlem sonucuna bağlı olarak çeşitli bayrakları (flags) tutar (örneğin, taşma, sıfır, negatiflik).
+
+Registerlar, bilgisayarın çalışma hızını artırmak için kritik öneme sahiptir çünkü işlemci, hafızadan (RAM) doğrudan daha hızlı veri alabilir.
+
+### 2. Hafıza (Memory)
+**Hafıza** ya da "bellek", veri ve programların saklandığı yerdir. Hafıza iki ana kategoriye ayrılır:
+
+- **Volatil Hafıza (RAM - Rastgele Erişimli Bellek)**: Bu hafıza türü, bilgisayar kapandığında içindeki verileri kaybeder. İşlemcinin çalışmakta olduğu verileri ve programları burada saklar.
+- **Non-volatil Hafıza (Hard disk, SSD, Flash bellek vb.)**: Bu tür hafızalar, bilgisayar kapansa bile veriyi korur. Uzun vadeli veri saklama amacıyla kullanılır.
+
+Hafızada, veriler ve program kodları, işlemcinin erişebileceği ve işleyebileceği şekilde saklanır. Hafıza, genellikle daha yavaş erişim sürelerine sahiptir ancak daha büyük kapasitelere ulaşabilir.
+
+### 3. Yazmaç
+**Yazmaç** kelimesi, Türkçe'de bazen "register" için kullanılır. Genel anlamda, bir mikroişlemcinin veya diğer bir veri işleme cihazının içindeki herhangi bir hafıza birimi veya depolama lokasyonunu ifade edebilir. Yazmaçlar, genellikle hızlı veri işleme ve geçici veri saklama için kullanılır.
+
+Bu üç kavram, bir bilgisayar sisteminin veri işleme kapasitesi ve hızı üzerinde doğrudan etkili olur ve birbiriyle yakından ilişkilidir. Her biri, veri işleme ve yönetiminde farklı roller oynar.
+
+----------------------------------------------///---///---///----------------------------------------------
+
+NOP
+Hiç bir işlem gerçekleştirmeyen bir makina kodudur.
+Programlama veya derlemede genellikle bir komutun kullanımında boşta kalan alanların doldurulmasında kullanılır.
+Exploit geliştirme çalışmalarında ise yazılan exploit kodunun güvenilir ve sağlam olması için bu komut  kullanılmaktadır.
+
+PUSH POP komutu =
+PUSH/POP komutları stack alanına veri eklemek yada çıkarmak için kulanılan komutlardır. 
+PUSH Komutu 4 byte uzunluğundaki veriyi stack’e ekler ve ESP değerini 4 azaltır. 
+Stack büyümesini, düşük adres alanına doğru gerçekleştirdiği için çıkartma işlemi yapılmaktadır.
+Aynı şekilde POP işlemi sırasında da stack alanının en üst noktasından (top of the stack) 4 byte uzunluğunda bir veri alınır ve ESP değeri 4 artırılıtr.
+
+CALL/RET komutu =
+CALL assembly komutu ile program akışı uygulamanın kod alanı içinde başka bir yerde bulunan bir fonksiyon alanına gider ve fonsiyonun işlemi tamamlandıktan sonra ana program akışı içinde kaldığı yerden devam eder.
+CALL ile çağırılan fonksiyonun işlemleri tamamlandıktan sonra ana kod akışında kaldığı yerden devam etmesi için çağırılan fonksiyonda RET assembly komutunun çalıştırılması gerekmektedir.
+
+CALL Komutu çalıştırıldığında aşağıdaki işlemler gerçekleştirilmektedir.
+
+Bir sonraki komut adresi stack üzerine eklenir. (Bu değer fonksiyon RET komutu ile ana fonksiyona geldiğinde kaldığı yerden devam edeceği adres bilgisidir.)
+EIP değerine CALL komutunda gösterilen adres değeri atanır.
+
+MOV komutu = 
+MOV komutu ile iki yazmaç arasında, yazmaçlarla hazfıza arasında veri taşımak veya bahsedilen bu alanlara bir değer atamak için kullanılan bir komuttur.
+Bu komut, memory adresleri arasında kullanılmaz.
+
+mov eax, ebx
+
+mov eax, [ebx]
+
+LEA komutu = 
+LEA Komutu(Load Effective Address) etkin adresi yükle anlamındadır.
+MOV komutundan farklı olarak MOV komutu ile register’a bir hafızadan veya register’dan yüklersiniz.
+Oysa LEA komutu ile register’a o yerdeki değeri değil, oranın adresini yüklersiniz.
+Bu sekilde iki yada üç komut ile yapılacak bir işlemi tek bir komut ile yapabilirsiniz.
+Böylelikle, LEA komutu, herhangi bir register’a bir bellek adresini yükleme amacı ile kullanılmış olur.
+
+lea register, adres
+
+lea register, [adres]
+
+CMP komutu = 
+iki farklı değerin karşılaştırılmasında kullanılan bir komuttur.
+Çoğunlukla şartlı işlem gerçekleştirme öncesinde kullanılırlar.
+Bu komut ile iki operand karşılaştırma amacı ile birbirinden çıkartılır.
+Bu işlem gerçekleştirilirken kullanılan operand’ların değeri değiştirmez.
+Ancak işlemcide bulunan bayraklar üzerinde etkisi bulunmaktadır.
+
+CMP Operand1, Operand2
+
+Karşılaştırma işleminde bayrak durumları aşağıdaki gibi olmaktadır.
+
+Bayrak  CMP Durumu
+ZF      (Zero Flag)	İki değer birbirine eşit ise set edilir.
+CF      (Cary Flag)	Operand2 büyük ise 1, Operand2 büyük ise 0 set edilir.
+OF      (Overflow Flag)	Operand2 büyük ise,SF=0 OF=1 veya SF=1 OF=0Operand1 büyük ise,SF=0 OF=0 veya SF=1 OF=1
+SF      (Sign Flag)
+
+ESP değeri = 
+ESP (Extended Stack Pointer),
+Intel 8086 ve daha üstü x86 mimarisi tabanlı işlemcilerde kullanılan bir kayıtçıdır (register).
+ESP kayıtçısı, geçerli yığın (stack) çerçevesinin başlangıcını gösterir.
+Yığın, işletim sistemi ve uygulamalar tarafından geçici veri depolama,
+işlev çağrıları ve dönüş adreslerinin saklanması gibi işlemler için kullanılan bir bellek yapısını ifade eder.
+
+RAX komutu = 
+rax kaydedicisi, x86_64 mimarisindeki bir genel amaçlı kaydedici (register) olup, 64-bit genişliğindedir.
+Bu kaydedici, 32-bit x86 mimarisindeki eax kaydedicisinin doğrudan genişletilmiş halidir ve tarihsel olarak bu kaydedici dizisinin en başında yer alan ax kaydedicisinden türemiştir.
+rax kaydedicisi genellikle işlem sonuçlarını depolamak ve fonksiyonlardan değer döndürmek için kullanılır.
+
+İşte rax kaydedicisinin bazı temel kullanımları:
+Sonuç Depolama: Aritmetik ve mantıksal işlemlerin sonuçları genellikle rax kaydedicisinde saklanır. Örneğin, iki sayının toplandığı bir işlemde toplam rax içerisinde yer alır.
+Fonksiyon Dönüş Değeri: Çoğu çağrı kurallarında (calling conventions), fonksiyonların dönüş değeri rax kaydedicisinde taşınır.
+Bu, hem tamsayı hem de işaretçi (pointer) türündeki dönüş değerleri için geçerlidir.
+Araç Kaydedici: rax kaydedicisi, genellikle çeşitli ara hesaplamalar ve geçici değer saklama işlemleri için kullanılır.
+Kısacası, rax çok amaçlı ve sıkça kullanılan bir kaydedici olup, birçok temel işlem ve fonksiyon çağrısında merkezi bir rol oynar. 
+Bu kaydedici, veri işleme ve kontrol akışı yönetimi için mimarinin temel taşlarından biridir.
+
+RDI RSI komutu = 
+rdi ve rsi x86_64 mimarisinde kullanılan genel amaçlı kaydedicilerdir (registers).
+Bu kaydediciler, genellikle fonksiyon çağrıları sırasında argümanları iletmek için kullanılır.
+ x86_64 mimarisi, fonksiyon argümanlarını kaydediciler aracılığıyla geçirmek için belirli bir çağrı kuralları setine (calling convention) sahiptir. 
+Bu kurallardan en yaygın olanı System V AMD64 ABI'dır, Linux ve diğer UNIX benzeri işletim sistemlerinde kullanılır.
+Windows'ta ise farklı bir çağrı kuralı olan Microsoft x64 calling convention kullanılır.
+
+İşte rdi ve rsi kaydedicilerinin temel kullanımları:
+rdi (Destination Index): Genellikle hedef bellek adresi veya bir fonksiyona geçirilen ilk parametre olarak kullanılır. Örneğin, bir string kopyalama fonksiyonunda hedef string'in adresini tutabilir.
+rsi (Source Index): Genellikle kaynak bellek adresi veya bir fonksiyona geçirilen ikinci parametre olarak kullanılır. Örneğin, bir string kopyalama fonksiyonunda kaynak string'in adresini tutabilir.
+Bu kaydediciler, 64-bit mimaride edi ve esi kaydedicilerinin genişletilmiş halleridir, yani 32-bit'teki kullanımlarının aynısı 64-bit genişlikte devam etmektedir. Örneğin, bir fonksiyon içinde bir string kopyalama işlemi yaparken kaynak ve hedef adresler bu kaydediciler kullanılarak iletilir. Bu, bellek-bellek işlemleri ve diğer veri transferleri için verimliliği artırır.
+
+`ebx` kaydedicisi, x86 mimarisinde kullanılan genel amaçlı bir kaydedicidir ve 32-bit genişliğindedir. `ebx` kaydedicisi, `bx` kaydedicisinin genişletilmiş halidir, ki `bx` 16-bit mimaride kullanılıyordu. `ebx` kaydedicisi hem veri depolamak hem de adres hesaplamalarında kullanılır.
+
+İşte `ebx` kaydedicisinin bazı temel kullanımları:
+
+- **Veri Depolama:** `ebx` kaydedicisi, çeşitli işlemler sırasında veri saklamak için kullanılır. Özellikle döngülerde ve uzun işlemler sırasında ara değerleri saklamak için tercih edilir.
+
+- **Adres Hesaplamaları:** Bazı durumlarda, özellikle baz indeks adreslemesi (base-index addressing) kullanılarak veriye erişimde `ebx` kaydedicisi adres hesaplamaları için kullanılabilir. Bu, veri yapılarının içinde gezinme veya dizilerle çalışırken faydalıdır.
+
+- **Yığına Erişim:** Fonksiyon çağrıları sırasında yerel değişkenler ve parametreler için yığın üzerindeki adresleri hesaplarken kullanılabilir.
+
+- **Kaydedici Koruma:** Fonksiyon çağrıları sırasında `ebx` kaydedicisinin değeri korunması gerekebilir, çünkü bazı çağrı kuralları (calling conventions) kaydedicilerin fonksiyonlar arasında korunmasını gerektirir. Bu durumda `ebx` değeri yığına kaydedilir ve fonksiyon sonunda geri yüklenir.
+
+64-bit mimaride `ebx` kaydedicisinin doğrudan karşılığı `rbx` kaydedicisidir ve benzer kullanım amaçlarına hizmet eder. `rbx` genellikle veri depolama ve bazı adres hesaplamaları için kullanılır ve yine bazı çağrı kuralları tarafından korunması gereken kaydediciler arasındadır.
+
+ADD ve ADC komutu = 
+
+Toplama ve elde ile toplama komutlarıdır. ADD komutu işlemci durum kaydedicisinin C bitini hesaba katmazken ADC toplama işlemini C bitinide dahil ederek yapar.
+"C biti", Carry Flag'i (Taşıma Bayrağı) ifade eder. Assembly programlamada ve işlemci mimarisinde, Carry Flag genellikle aritmetik işlemlerden, özellikle toplama ve çıkarma işlemlerinden sonra oluşabilecek taşma durumlarını belirtmek için kullanılır. Bu bayrak, işlemcinin bayrak register'ında (flags register) bulunur ve belirli durumlarda işlem sonucunun durumuna göre ayarlanır.
+
+Carry Flag (C biti) Kullanımı:
+Toplama İşlemleri: Eğer bir toplama işlemi sonucunda en üst bit (most significant bit - MSB) üzerinden bir taşma (carry) oluşursa, Carry Flag set edilir (1 yapılır). Örneğin, iki unsigned sayının toplanması sırasında sonucun maksimum değeri aşması durumunda bu bayrak kullanılır.
+Çıkarma İşlemleri: Çıkarma işlemlerinde, borrow (borç) durumu oluştuğunda Carry Flag temizlenir (0 yapılır).
+
+ADD (Addition): Bu komut iki değeri toplar ve sonucu hedef register'a kaydeder. Bu işlem sırasında Carry Flag doğrudan işleme dahil edilmez, ancak sonuçta bir taşma olursa Carry Flag otomatik olarak set edilir.
+
+ADD AX, BX  ; AX = AX + BX
+
+ADC (Add with Carry): ADC komutu, ADD komutuna çok benzerdir ancak bir farkla; ADC, iki değeri toplar ve ek olarak Carry Flag'in şu anki değerini de toplama işlemine ekler. Bu, özellikle çoklu precision (çoklu kesinlik) toplama işlemlerinde kullanılır, burada bir önceki toplama işleminden kalan carry'i dahil etmek gerekebilir.
+
+ADC AX, BX  ; AX = AX + BX + Carry Flag
+
+INC komutu = 
+ADD X, 1 gibi çalışır. 
+X kaydedici veya hafıza alanı olabilir. 
+Kısaca hedefi 1 arttırır. 
+Döngülerde çok kullanılan bir komuttur. 
+

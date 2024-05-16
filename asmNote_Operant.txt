@@ -1,0 +1,25 @@
+
+Assembly dilinde "operand" terimi, bir işlemci komutunun üzerinde işlem yapılan veriyi ifade eder.
+Operandlar, bir assembly komutunun temel bileşenlerinden biridir ve genellikle bir komutla birlikte hangi verilerin kullanılacağını belirtir. 
+Bir assembly komutu genellikle bir işlemci komutundan (opcode) ve bir veya daha fazla operanddan oluşur.
+Operandlar, işlemcinin ne yapacağını ve hangi veriler üzerinde işlem yapılacağını belirler.
+
+Operand Çeşitleri
+Assembly dilinde çeşitli operand tipleri bulunur, ve bunlar genellikle aşağıdaki kategorilere ayrılır:
+
+Register Operandları:
+
+İşlemlerin üzerinde gerçekleştirildiği ve CPU içinde hızlı erişime izin veren küçük hafıza birimleridir.
+Örnek: mov eax, ebx burada eax ve ebx register operandlarıdır.
+Sabit Sayılar (İmmidiate Operandları):
+
+Direkt olarak komutun kendisinde tanımlanan sabit sayılar.
+Örnek: add eax, 5 burada 5 bir immediate operanddır.
+Bellek Operandları:
+
+Bellek adresleridir. Bu operandlar, verilerin RAM'den alınacağı veya RAM'e yazılacağı konumu belirtir.
+Örnek: mov eax, [1234h] burada [1234h] bellek adresi bir bellek operandıdır.
+Port Operandları:
+
+Genellikle donanım ile iletişimde kullanılır ve belirli bir I/O portuna erişimi ifade eder.
+Örnek: in al, dx burada dx port operandıdır.

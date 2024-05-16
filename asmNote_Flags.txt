@@ -1,0 +1,23 @@
+Assembly dilinde ve bilgisayar mimarisinde, "bayraklar" (flags), işlemcinin işlem sonuçları hakkında bilgi veren durum göstergeleridir. Bu bayraklar, işlemcinin içinde bulunan bayrak register'ında (genellikle "Flags Register" veya "Status Register" olarak adlandırılır) yer alır. Bayraklar, işlemler sonucunda ortaya çıkan durumları işaret eder ve genellikle işlemci tarafından yapılan aritmetik ve mantıksal işlemlerin sonuçlarına göre ayarlanır. Programın akışını kontrol etmek için koşullu atlama (conditional jump) ve karar verme yapılarında kullanılırlar.
+
+En yaygın bayraklar x86 mimarisinde şunlardır:
+
+### 1. Carry Flag (CF)
+Carry Flag, en son yapılan işlem sonucunda taşma (carry-out) olup olmadığını gösterir. Özellikle, aritmetik işlemlerden sonra, en yüksek bit (MSB) üzerinden taşma olursa bu bayrak ayarlanır. Örneğin, iki büyük unsigned sayının toplanması sonucu oluşan taşma durumu bu bayrak tarafından belirtilir.
+
+### 2. Zero Flag (ZF)
+Zero Flag, bir işlemin sonucunun sıfır (0) olup olmadığını gösterir. Eğer sonuç sıfırsa, ZF set edilir. Bu, genellikle eşitlik kontrolü için kullanılır.
+
+### 3. Sign Flag (SF)
+Sign Flag, son işlem sonucunun işaret bitini (en üstteki bit, MSB) gösterir. Eğer sonuç negatif ise SF set edilir. Bu, sayının işaret durumunun kontrolü için kullanılır.
+
+### 4. Overflow Flag (OF)
+Overflow Flag, iki işaretli sayının toplanması veya çıkarılması sonucunda oluşan taşma (overflow) durumunu gösterir. Özellikle, sonuç beklenen aralığın dışında kaldığında bu bayrak set edilir.
+
+### 5. Parity Flag (PF)
+Parity Flag, son işlem sonucundaki düşük byte'daki 1'lerin sayısının çift veya tek olup olmadığını gösterir. Eğer çift sayıda 1 varsa, PF set edilir. Bu bayrak, eski bilgisayar sistemlerinde veri iletişiminde hata kontrolü için kullanılırdı.
+
+### 6. Auxiliary Carry Flag (AF)
+Auxiliary Carry Flag, BCD (Binary Coded Decimal) aritmetik işlemlerinde düşük nibbledan (bir byte'ın yarısı) taşma olup olmadığını gösterir. Bu bayrak esasında daha çok finansal ve hesaplama yoğun uygulamalarda kullanılan bir detaydır.
+
+Bu bayraklar, işlemcinin çeşitli durumları hakkında bilgi sağlar ve bu bilgiler programın akışını değiştirmek için kullanılır. Örneğin, bir koşullu dalma (jump) işlemi, belirli bir bayrağın durumuna bağlı olarak gerçekleştirilebilir, böylece program farklı yürütme yolları izleyebilir.

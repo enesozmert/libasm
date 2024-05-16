@@ -1,0 +1,5 @@
+https://www.tutorialspoint.com/assembly_programming/assembly_conditions.htm
+https://www.csharpnedir.com/articles/read/?id=578
+https://www.siberportal.org/red-team/exploit-development/before-exploitation-part-3-x86-assembly-language/#:~:text=PUSH%2FPOP,ger%C3%A7ekle%C5%9Ftirdi%C4%9Fi%20i%C3%A7in%20%C3%A7%C4%B1kartma%20i%C5%9Flemi%20yap%C4%B1lmaktad%C4%B1r.
+http://eng.harran.edu.tr/~nbesli/RBT/80x86_Komut.pdf
+https://www.csharpnedir.com/articles/?page=1&author=0&ord=new&cat=asm&title=X86%20Assembly&filter=edited

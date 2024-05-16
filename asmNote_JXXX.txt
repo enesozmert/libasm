@@ -1,0 +1,46 @@
+Bayrakların Durumunu Test Etmek İçin Jxxx Komutları
+Komut	Açıklama	Şart	Eş Komut	Karşıt Komut
+JC	Jump if carry (carry (taşıma) bayrağı 1 ise)	Carry = 1	JB, JNAE	JNC
+JNC	Jump if no carry (carry (taşıma) bayrağı 0 ise)	Carry = 0	JNB, JAE	JC
+JZ	Jump if zero (zero (sıfır) bayrağı 1 ise)	Zero = 1	JE	JNZ
+JNZ	Jump if not zero (zero (sıfır) bayrağı 0 ise)	Zero = 0	JNE	JZ
+JS	Jump if sign (sign (işaret) bayrağı 1 ise)	Sign = 1	-	JNS
+JNS	Jump if no sign (sign (işaret) bayrağı 1 ise)	Sign = 0	-	JS
+JO	Jump if overflow (overflow (taşma) bayrağı 1 ise)	Ovrflw=1	-	JNO
+JNO	Jump if no Overflow (overflow (taşma) bayrağı 0 ise)	Ovrflw=0	-	JO
+JP	Jump if parity (parity (eşlik) bayrağı 1 ise)	Parity = 1	JPE	JNP
+JPE	Jump if parity even (sonuçtaki 1ler çift ise)	Parity = 1	JP	JPO
+JNP	Jump if no parity (parity (eşlik) bayrağı 0 ise)	Parity = 0	JPO	JP
+JPO	Jump if parity odd (sonuçtaki 1ler tek ise)	Parity = 0	JNP	JPE
+
+
+Komut	Açıklama	Şart	Eş Komut	Karşıt Komut
+JA	Jump if above (>) (Yukarısındaysa)	Carry=0, Zero=0	JNBE	JNA
+JNBE	Jump if not below or equal (not <=)
+(Aşağısında değil yada eşit değilse)	Carry=0, Zero=0	JA	JBE
+JAE	Jump if above or equal (>=) (Yukarısında veya eşitse)	Carry = 0	JNC, JNB	JNAE
+JNB	Jump if not below (not <) (Aşağısında değilse)	Carry = 0	JNC, JAE	JB
+JB	Jump if below (<) (Aşağısındaysa)	Carry = 1	JC, JNAE	JNB
+JNAE	Jump if not above or equal (not >=)
+(Yukarısında değil veya eşit değilse)	Carry = 1	JC, JB	JAE
+JBE	Jump if below or equal (<=) (Aşağısında veya eşitse)	Carry = 1 or Zero = 1	JNA	JNBE
+JNA	Jump if not above (not >) (Yukarısında değilse)	Carry = 1 or Zero = 1	JBE	JA
+JE	Jump if equal (=) (Eşitse)	Zero = 1	JZ	JNE
+JNE	Jump if not equal (!=) (Eşit Değilse)	Zero = 0	JNZ	JE
+
+
+İşaretli Sayılarda Jxxx Komutları
+Komut	Açıklama	Şart	Eş Komut	Karşıt Komut
+JG	Jump if greater (>) (Büyükse)	Sign = Ovrflw or Zero=0	JNLE	JNG
+JNLE	Jump if not less than or equal (not <=)
+(Düşük değilse yada eşit değilse)	Sign = Ovrflw or Zero=0  	JG	JLE
+JGE	Jump if greater than or equal (>=)
+(Büyükse veya eşitse)	Sign = Ovrflw	JNL	JGE
+JNL	Jump if not less than (not <) (Düşük değilse)	Sign = Ovrflw	JGE	JL
+JL	Jump if less than (<) (Düşükse)	Sign Ovrflw	JNGE	JNL
+JNGE	Jump if not greater or equal (not >=)
+(Büyük değilse veya eşit değilse)	Sign Ovrflw  	JL	JGE
+JLE	Jump if less than or equal (<=) (Düşükse veya eşitse)	Sign Ovrflw or Zero = 1	JNG	JNLE
+JNG	Jump if not greater than (not >) (Büyük değilse)	Sign Ovrflw or Zero = 1	JLE	JG
+JE	Jump if equal (=) (Eşitse)	Zero = 1	JZ	JNE
+JNE	Jump if not equal (!=) (Eşit değilse)	Zero = 0	JNZ	JE
