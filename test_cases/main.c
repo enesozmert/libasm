@@ -109,6 +109,21 @@ void readTester(char *str1, char *file_path)
         printf(BRED "read   -> KO\n" reset);
 }
 
+void test_successful_write() {
+    const char *msg = "Hello, ft_write!\n";
+    ssize_t result = _ft_write(STDOUT_FILENO, msg, strlen(msg));
+    assert(result == (ssize_t)strlen(msg));
+    printf("[OK] Successful write test passed.\n");
+}
+
+void test_failed_write() {
+    const char *msg = "This should fail\n";
+    ssize_t result = _ft_write(-1, msg, strlen(msg)); // -1 geçersiz fd
+    assert(result == -1);
+    assert(*___error() == EBADF);
+    printf("[OK] Failed write test passed.\n");
+}
+
 int processWork(int process, char *str1, char *str2, char *file_path)
 {
     char *processes[] = {"strlen", "strcmp", "strcpy", "strdup", "write", "read", "all"};
@@ -133,6 +148,8 @@ int processWork(int process, char *str1, char *str2, char *file_path)
         break;
     case 5:
         writeTester(str1, file_path);
+        test_successful_write();
+        test_failed_write();
         break;
     case 6:
         readTester(str1, file_path);
