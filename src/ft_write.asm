@@ -1,17 +1,17 @@
-extern      ___error	; int ___error(int errnum, const char *msg);
-section     .text
-global      _ft_write
+extern __errno_location
+
+section .text
+global _ft_write
 
 _ft_write:
-    mov rax, 0x02000004 ; SYS_write | also 1 = SYS_write
-    syscall             ; ; int write(int fd, const void *buf, size_t count);
-    jc _ft_error        ; if carry flag is set, jump to error
+    mov rax, 1          ; SYS_write (Linux için)
+    syscall
+    jc _ft_error        ; hata varsa _ft_error’a git
     ret
 
 _ft_error:
-    push rax
-    call ___error
-    pop rdx
-    mov [rax], rdx
-    mov rax, -1
+    ; RIP-relative olarak __errno_location adresini al
+    call qword [rel __errno_location wrt ..got]
+    mov qword [rax], -1 ; errno = -1
+    mov rax, -1         ; fonksiyon -1 döndürsün
     ret

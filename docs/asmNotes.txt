@@ -39,7 +39,7 @@ Bu kavramların her biri, assembly programlama yaparken karşılaşacağınız v
 Assembly dilinde ve bilgisayar mimarisinde "register", "hafıza (memory)", ve "yazmaç" kavramları merkezi öneme sahiptir. Bunlar bir bilgisayarın nasıl çalıştığını anlamak için temel bileşenlerdir. İşte bu kavramların açıklamaları:
 
 ### 1. Register (Yazmaç)
-**Register** ya da Türkçe'de bazen "yazmaç" olarak da bilinir, mikroişlemcinin hızlı erişim sağlayabileceği küçük hafıza birimleridir. İşlemcinin içinde yer alırlar ve çok hızlı bir şekilde erişilebilirler. Registerlar, işlemcinin anlık olarak ihtiyaç duyduğu verileri ve işlem sonuçlarını saklar. Çeşitli tiplerde registerlar vardır:
+**Register** ya da Türkçe'de bazen "yazmaç" olar                                                    irimleridir. İşlemcinin içinde yer alırlar ve çok hızlı bir şekilde erişilebilirler. Registerlar, işlemcinin anlık olarak ihtiyaç duyduğu verileri ve işlem sonuçlarını saklar. Çeşitli tiplerde registerlar vardır:
 
 - **Genel Amaçlı Registerlar (General Purpose Registers)**: Bunlar çeşitli veri işlemleri için kullanılır (örneğin, `AX`, `BX`, `CX`, `DX` x86 mimarisinde).
 - **Segment Registerlar**: Hafızanın adreslenmesi için kullanılır (örneğin, `CS`, `DS`, `SS`).

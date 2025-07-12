@@ -2,5 +2,6 @@
     "CodeGPT.apiKey": "CodeGPT Plus Beta",
     "files.associations": {
         "color.h": "c"
-    }
+    },
+    "cmake.ignoreCMakeListsMissing": true
 }

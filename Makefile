@@ -1,47 +1,60 @@
-NAME    =   libasm.a
+NAME    	=   libasm.a
+BUILD   	=   build
+INCLUDES	=   includes
+SRC_DIR 	=   src
+TEST_DIR	=   test
 
-SRC     =   src/ft_read.asm \
-            src/ft_strcmp.asm \
-            src/ft_strcpy.asm \
-            src/ft_write.asm \
-            src/ft_strlen.asm \
-            src/ft_strdup.asm
+SRC     	=   $(SRC_DIR)/ft_read.asm \
+        	    $(SRC_DIR)/ft_strcmp.asm \
+        	    $(SRC_DIR)/ft_strcpy.asm \
+        	    $(SRC_DIR)/ft_write.asm \
+        	    $(SRC_DIR)/ft_strlen.asm \
+        	    $(SRC_DIR)/ft_strdup.asm
 
-GREEN   =   \033[38;5;46m
-WHITE   =   \033[38;5;15m
-RED     =   \033[38;5;160m
-BLUE    =   \033[0;34m
+OBJ     	=   $(patsubst $(SRC_DIR)/%.asm, $(BUILD)/%.o, $(SRC))
 
-SRC_O   =   $(SRC:.asm=.o)
+TEST_BIN	=   $(BUILD)/test_bin
 
-FLAGS   =   -Wall -Wextra -Werror
+GREEN   	=   \033[38;5;46m
+WHITE   	=   \033[38;5;15m
+RED     	=   \033[38;5;160m
+BLUE    	=   \033[0;34m
 
-all: $(NAME)
+FLAGS   	=   -Wall -Wextra -Werror
 
-$(NAME): $(SRC_O)
-	@echo "$(GREEN)Creating libasm.a$(WHITE)"
-	@ar rc $(NAME) $(SRC_O)
-	@ranlib $(NAME)
+run_all:
+	@bash ./run_all.sh
 
-%.o: %.asm
+all: $(BUILD)/$(NAME)
+
+$(BUILD)/$(NAME): $(OBJ) | $(BUILD)
+	@echo "$(GREEN)Creating libasm.a in $(BUILD)/$(WHITE)"
+	@ar rc $@ $(OBJ)
+	@ranlib $@
+
+$(BUILD)/%.o: $(SRC_DIR)/%.asm | $(BUILD)
 	@echo "$(BLUE)Compiling: $(WHITE)$<"
 	@nasm -f elf64 -o $@ $<
 
-test: $(NAME)
-	@gcc $(FLAGS) -L. test_cases/main.c -o test -lasm -lc
+$(BUILD):
+	@mkdir -p $(BUILD)
+
+test: $(BUILD)/$(NAME)
+	@echo "$(BLUE)Compiling test binary$(WHITE)"
+	@gcc $(FLAGS) -I$(INCLUDES) -L$(BUILD) $(TEST_DIR)/main.c -o $(TEST_BIN) -lasm -lc
 	@echo "$(GREEN)Compiled main.c with libasm.a$(WHITE)"
 
 run_test: test
 	@echo "$(GREEN)Running test executable$(WHITE)"
-	@./test "help"
+	@$(TEST_BIN) $(ARGS)
 
 clean:
-	@echo "$(RED)Cleaning all .o files$(WHITE)"
-	@rm -f $(SRC_O)
+	@echo "$(RED)Cleaning object files$(WHITE)"
+	@rm -rf $(OBJ)
 
 fclean: clean
-	@echo "$(RED)Cleaning all .a files and test executable$(WHITE)"
-	@rm -f $(NAME) test
+	@echo "$(RED)Cleaning all build artifacts$(WHITE)"
+	@rm -rf $(BUILD)
 
 re: fclean all
 
