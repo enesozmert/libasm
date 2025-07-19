@@ -1,0 +1,70 @@
+1-Register Nedir
+
+Register = CPU’nun çok küçük ama ultra hızlı belleği.
+
+Bellekteki (RAM) veriyi işlemek için önce register’a yüklenir, işlem yapılır ve sonra istenirse RAM’e geri yazılır.
+
+x86-64 mimarisinde 16 genel amaçlı 64-bit register vardır.
+
+2-Register Listesi
+| 64-bit | 32-bit | 16-bit | 8-bit (High) | 8-bit (Low) | Görev / Açıklama                        |
+| ------ | ------ | ------ | ------------ | ----------- | --------------------------------------- |
+| `RAX`  | `EAX`  | `AX`   | `AH`         | `AL`        | Ana accumulator (toplama, dönüş değeri) |
+| `RBX`  | `EBX`  | `BX`   | `BH`         | `BL`        | Genel amaçlı, veri saklama              |
+| `RCX`  | `ECX`  | `CX`   | `CH`         | `CL`        | Sayaç (loop, rep komutları)             |
+| `RDX`  | `EDX`  | `DX`   | `DH`         | `DL`        | Veri register’ı, bölme/çarpma operandı  |
+| `RSI`  | `ESI`  | `SI`   |              | `SIL`       | String kaynak pointer’ı                 |
+| `RDI`  | `EDI`  | `DI`   |              | `DIL`       | String hedef pointer’ı                  |
+| `RBP`  | `EBP`  | `BP`   |              | `BPL`       | Stack frame base pointer                |
+| `RSP`  | `ESP`  | `SP`   |              | `SPL`       | Stack pointer                           |
+| `R8`   | `R8D`  | `R8W`  |              | `R8B`       | Ekstra genel amaçlı register (64-bit)   |
+| `R9`   | `R9D`  | `R9W`  |              | `R9B`       | Ekstra genel amaçlı register (64-bit)   |
+| `R10`  | `R10D` | `R10W` |              | `R10B`      | Ekstra genel amaçlı register            |
+| `R11`  | `R11D` | `R11W` |              | `R11B`      | Ekstra genel amaçlı register            |
+| `R12`  | `R12D` | `R12W` |              | `R12B`      | Ekstra genel amaçlı register            |
+| `R13`  | `R13D` | `R13W` |              | `R13B`      | Ekstra genel amaçlı register            |
+| `R14`  | `R14D` | `R14W` |              | `R14B`      | Ekstra genel amaçlı register            |
+| `R15`  | `R15D` | `R15W` |              | `R15B`      | Ekstra genel amaçlı register            |
+
+
+3-Register Boyutları
+
+ax	64	Tam 64-bit
+eax	32	Alt 32-bit
+ax	16	Alt 16-bit
+ah	8	Üst 8-bit (ax)
+al	8	Alt 8-bit (ax)
+
+8-bit parçalar:
+
+    Eski register’ların (RAX–RDX) hem AL/AH (low/high) 8-bit parçaları var.
+
+    Yeni R8–R15 için sadece low 8-bit (örn. R8B) var.
+
+16-bit parçalar:
+
+    16-bit segmentler 8086’dan kalma (AX, BX, CX, DX).
+
+32-bit parçalar:
+
+    32-bit segmentler (EAX, EBX...) x86 döneminde geldi.
+
+    x86-64’te kullanılırken otomatik olarak üst 32-bit’i sıfırlar.
+
+64-bit:
+
+    x86-64 ile gelen genişletilmiş tam 64-bit register’lar (RAX, RBX, ...).
+
+    İlk x86 işlemciler (Intel 8086) 16-bit mimariydi.
+
+    Register’lar o zaman 16 bit genişliğindeydi (AX, BX, CX, DX).
+
+    Ama bazen sadece 8-bitlik veri ile çalışmak gerekiyordu (örneğin ASCII karakter işleme veya port IO gibi).
+
+    İşte o zaman AX’in alt ve üst 8 biti ayrı ayrı erişilebilir hale getirildi:
+
+        AL (A Lower) → AX’in alt 8 bit’i (bit 0–7)
+
+        AH (A Higher) → AX’in üst 8 bit’i (bit 8–15)
+
+Böylece aynı register’ın hem 8-bit hem 16-bit hem de (daha sonra) 32-bit ve 64-bit halleri çıktı.

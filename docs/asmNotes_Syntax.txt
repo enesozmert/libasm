@@ -1,0 +1,34 @@
+Assembly Kodunun Kısımları (Syntax ve Yapı)
+
+Directive’ler (Yönlendirmeler)
+Kod (Instructions)
+Etiketler (Labels)
+
+1. Directive’ler (Yönlendirmeler)
+
+Bunlar Assembler’a talimat veren satırlardır.
+Başında . noktası vardır ve makine koduna çevrilmezler.
+📌 Directive
+.section .text	Kod bölümü: Fonksiyonlar ve çalıştırılabilir kodlar buraya yazılır.
+.section .data	Veri bölümü: Değişmeyen sabit veriler (stringler, sabitler).
+.section .bss	Sıfırlanmış veri: Başlangıçta 0 olan değişkenler.
+.global _start	_start fonksiyonunu global yapar (linker görebilir).
+.globl ft_strlen	ft_strlen fonksiyonunu global yapar (kütüphane export).
+
+2. Kod (Instructions)
+
+Bunlar işlemciye yapılacak işi söyler ve makine koduna dönüşür.
+
+3. Etiketler (Labels)
+
+Etiketler programın bir noktasını adlandırır ve sonuna : gelir.
+Örn: Döngü veya fonksiyon isimleri.
+.loop:	Bir döngü başlangıç noktası
+.done:	İşlem tamamlandığında atlanacak yer
+
+Önemli Noktalar
+section	Kod, veri veya bss bölümü tanımlar.
+global / globl	Fonksiyonu dış dünyaya açar (C’den çağırmak için).
+;	Yorum satırı başlatır.
+[]	Bellek adresine erişimi belirtir ([rdi]).
+label:	Kodda atlanacak nokta tanımlar.

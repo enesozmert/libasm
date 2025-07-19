@@ -1,0 +1,64 @@
+1. Veri Taşıma ve Atama
+
+mov rax, rbx	rbx değerini rax’a kopyalar
+lea rax, [rbx + rcx*4]	Adresi hesaplar ve rax’a yükler (load effective address)
+push rax	rax’ı stack’e atar
+pop rax	Stack’ten değer alır ve rax’a koyar
+xchg rax, rbx	İki register’ın içeriğini değiştirir
+xor rax, rax	rax = 0 (hızlı sıfırlama)
+
+2. Aritmetik ve Mantıksal İşlemler
+
+add rax, 5	rax = rax + 5
+sub rax, 3	rax = rax - 3
+inc rax	rax++
+dec rax	rax--
+imul rax, rbx	rax *= rbx (signed çarpma)
+idiv rcx	rax = rdx:rax / rcx (signed bölme)
+and rax, rbx	rax = rax & rbx (bitwise AND)
+or rax, rbx	rax = rax | rbx (bitwise OR)
+xor rax, rbx	rax = rax ^ rbx (bitwise XOR)
+not rax	rax = ~rax
+shl rax, 1	rax <<= 1 (bit kaydırma sola)
+shr rax, 1	rax >>= 1 (bit kaydırma sağa)
+
+3. Koşullu ve Koşulsuz Dallanma
+
+jmp label	label’e git
+je label	Eğer eşitse (ZF=1) atla (jump equal)
+jne label	Eğer eşit değilse atla (jump not equal)
+jg label	Eğer büyüktür (ZF=0 & SF=OF)
+jl label	Eğer küçüktür (SF≠OF)
+jge label	Eğer büyük eşitse (SF=OF)
+jle label	Eğer küçük eşitse (ZF=1 or SF≠OF)
+cmp rax, rbx	rax - rbx karşılaştırır ve flag’leri ayarlar
+test rax, rax	rax & rax (sıfır mı kontrolü)
+call func	func fonksiyonunu çağırır
+ret	Fonksiyondan geri dön
+
+ 4. Bellek Erişimi
+
+mov rax, [rdi]	rdi adresindeki 8 byte’ı oku
+mov [rdi], rax	rax’ı rdi adresine yaz
+movzx rax, byte [rdi]	1 byte oku ve sıfır genişlet
+movsx rax, byte [rdi]	1 byte oku ve işaret genişlet
+stosb	AL’deki değeri [RDI]’ye yaz ve RDI++
+lodsb	AL’ye [RSI]’den 1 byte oku ve RSI++
+
+5. String ve Rep Komutları
+
+rep movsb	RCX kadar byte kopyala (src→dest)
+rep stosb	RCX kadar byte yaz (AL→dest)
+repnz scasb	Null byte bulana kadar tara
+repnz cmpsb	İki stringi karşılaştır (eşitlik test)
+scasb	[RDI] ile AL karşılaştırır
+
+6. Diğer Komutlar
+
+nop	No operation (hiçbir şey yapmaz)
+hlt	CPU’yu durdurur (halt)
+int 0x80	Linux syscall (32-bit)
+syscall	Linux syscall (64-bit)
+cpuid	CPU bilgisini alır
+rdtsc	Zaman sayacını oku (timestamp)
+
