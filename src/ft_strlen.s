@@ -3,7 +3,7 @@ section .text
 
 _ft_strlen:
     xor     rax, rax
-    mov     rsi, rdi
+    mov     rsi, rdi 
 
 .align_check:
     test    rsi, 7

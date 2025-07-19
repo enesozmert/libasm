@@ -29,7 +29,7 @@ x86-64 mimarisinde 16 genel amaçlı 64-bit register vardır.
 
 3-Register Boyutları
 
-ax	64	Tam 64-bit
+rax	64	Tam 64-bit
 eax	32	Alt 32-bit
 ax	16	Alt 16-bit
 ah	8	Üst 8-bit (ax)

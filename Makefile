@@ -4,14 +4,14 @@ INCLUDES	=   hdr
 SRC_DIR 	=   src
 TEST_DIR	=   test
 
-SRC     	=   $(SRC_DIR)/ft_read.asm \
-        	    $(SRC_DIR)/ft_strcmp.asm \
-        	    $(SRC_DIR)/ft_strcpy.asm \
-        	    $(SRC_DIR)/ft_write.asm \
-        	    $(SRC_DIR)/ft_strlen.asm \
-        	    $(SRC_DIR)/ft_strdup.asm
+SRC     	=   $(SRC_DIR)/ft_read.s \
+        	    $(SRC_DIR)/ft_strcmp.s \
+        	    $(SRC_DIR)/ft_strcpy.s \
+        	    $(SRC_DIR)/ft_write.s \
+        	    $(SRC_DIR)/ft_strlen.s \
+        	    $(SRC_DIR)/ft_strdup.s
 
-OBJ     	=   $(patsubst $(SRC_DIR)/%.asm, $(BUILD)/%.o, $(SRC))
+OBJ     	=   $(patsubst $(SRC_DIR)/%.s, $(BUILD)/%.o, $(SRC))
 
 TEST_BIN	=   $(BUILD)/test_bin
 
@@ -32,7 +32,7 @@ $(BUILD)/$(NAME): $(OBJ) | $(BUILD)
 	@ar rc $@ $(OBJ)
 	@ranlib $@
 
-$(BUILD)/%.o: $(SRC_DIR)/%.asm | $(BUILD)
+$(BUILD)/%.o: $(SRC_DIR)/%.s | $(BUILD)
 	@echo "$(BLUE)Compiling: $(WHITE)$<"
 	@nasm -f elf64 -o $@ $<
 
