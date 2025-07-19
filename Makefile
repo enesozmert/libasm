@@ -1,6 +1,6 @@
 NAME    	=   libasm.a
 BUILD   	=   build
-INCLUDES	=   includes
+INCLUDES	=   hdr
 SRC_DIR 	=   src
 TEST_DIR	=   test
 
@@ -41,7 +41,14 @@ $(BUILD):
 
 test: $(BUILD)/$(NAME)
 	@echo "$(BLUE)Compiling test binary$(WHITE)"
-	@gcc $(FLAGS) -I$(INCLUDES) -L$(BUILD) $(TEST_DIR)/main.c -o $(TEST_BIN) -lasm -lc
+	@gcc $(FLAGS) -I$(INCLUDES) -L$(BUILD) \
+	    $(TEST_DIR)/main.c \
+	    $(TEST_DIR)/helper.c \
+	    $(TEST_DIR)/tester.c \
+	    $(TEST_DIR)/tester_functions.c \
+	    $(TEST_DIR)/wrapper.c \
+	    $(TEST_DIR)/auto_test.c \
+	    -o $(TEST_BIN) -lasm -lc
 	@echo "$(GREEN)Compiled main.c with libasm.a$(WHITE)"
 
 run_test: test
