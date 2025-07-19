@@ -12,18 +12,15 @@ _ft_strcmp:
     cmp     rax, rbx
     jne     .find_diff
 
+    mov     r8, 0x0101010101010101
+    mov     r9, 0x8080808080808080
     mov     rdx, rax
-    sub     rdx, 0x0101010101010101
+    sub     rdx, r8
     not     rax
     and     rax, rdx
-    and     rax, 0x8080808080808080
+    and     rax, r9
     test    rax, rax
     jnz     .check_null
-
-    ; sonraki 8 byte bloğa geç
-    add     rdi, 8
-    add     rsi, 8
-    jmp     .loop8
 
 .find_diff:
 .find_byte:
